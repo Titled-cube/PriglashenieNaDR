@@ -353,7 +353,7 @@
             localStorage.setItem(`buttonPressed_${SELECTED_GUEST}`, 'true');
 
             this.textContent = "ДОСТУП РАЗРЕШЕН";
-            if  localStorage.setItem("codes") == "PS5" {this.textContent = "Агент 007";}
+            if  localStorage.getItem("codes") == "PS5" {this.textContent = "Агент 007";}
             
             this.style.backgroundColor = "#f0f";
             this.style.boxShadow = "0 0 10px #f0f, 0 0 20px #f0f";
