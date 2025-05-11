@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение</title>
+    <style>
+        body {
+            background-color: #0a0a12;
+            color: #0ff;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #0ff;
+            box-shadow: 0 0 15px #0ff, 0 0 30px #0ff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            color: #f0f;
+            text-shadow: 0 0 10px #f0f, 0 0 20px #f0f;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            animation: glitch 1s linear infinite;
+        }
+        
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .highlight {
+            color: #ff0;
+            font-weight: bold;
+        }
+        
+        .neon {
+            color: #0ff;
+            text-shadow: 0 0 5px #0ff;
+        }
+        
+        .pink {
+            color: #f0f;
+            text-shadow: 0 0 5px #f0f;
+        }
+        
+        .glitch {
+            animation: glitch 2s linear infinite;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 255, 255, 0.1) 0%,
+                rgba(0, 255, 255, 0) 10%
+            );
+            background-size: 100% 8px;
+            animation: scanline 8s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes scanline {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100%); }
+        }
+        
+        .button {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 15px;
+            text-align: center;
+            color: #0a0a12;
+            background-color: #0ff;
+            border: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            cursor: pointer;
+            box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+            transition: all 0.3s;
+        }
+        
+        .button:hover {
+            background-color: #f0f;
+            box-shadow: 0 0 10px #f0f, 0 0 20px #f0f;
+            transform: scale(1.05);
+        }
+        
+        .terminal {
+            background-color: rgba(0, 20, 20, 0.8);
+            border: 1px solid #0ff;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.8em;
+            color: #0ff;
+        }
+        
+        /* Стили для киберпанк взрыва */
+        .cyber-explosion {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: none;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .cyber-gif {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+        }
+        
+        .explosion-text {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #0ff;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            width: 100%;
+            animation: textGlow 1s infinite alternate;
+        }
+        
+        @keyframes textGlow {
+            from { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff; }
+            to { text-shadow: 0 0 15px #0ff, 0 0 30px #0ff, 0 0 40px #f0f; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="scanline"></div>
+        <h1 class="glitch">// КИБЕРПРИГЛАШЕНИЕ //</h1>
+        
+        <p>Дорогой <span class="highlight">Эдик</span>,</p>
+        
+        <p>Ты получил это сообщение из <span class="neon">киберпространства</span>. Система обнаружила важное событие:</p>
+        
+        <div class="terminal">
+            > SYSTEM ALERT: LEVEL_12_INITIATION_SEQUENCE<br>
+            > EVENT_TYPE: BIRTHDAY_PROTOCOL<br>
+            > USER_ID: COOL_CODER<br>
+            > CURRENT_LEVEL: 11<br>
+            > NEXT_LEVEL: 12<br>
+            > INTERESTS: PLAYSTATION, RASPBERRY_PI5<br>
+            > STYLE_PREFERENCE: CYBERPUNK<br>
+            > MESSAGE: JOIN_THE_CELEBRATION<br>
+        </div>
+        
+        <p>Я, <span class="pink">Левик</span>, приглашаю тебя на мой <span class="highlight">апгрейд до уровня 12</span>!</p>
+        
+        <p>Будут: <span class="neon">эпичные игры</span>, <span class="pink">вкусная пицца</span> и <span class="highlight">настолки</span>.</p>
+        
+        <p>Если ты готов присоединиться к этой <span class="neon">цифровой вечеринке</span>, подтверди свое участие:</p>
+        
+        <button class="button" id="confirmButton">ПОДТВЕРДИТЬ ПОСЕЩЕНИЕ</button>
+        
+        <p class="terminal">
+            > ДАТА: 18.05<br>
+            > ВРЕМЯ: 12:00<br>
+            > МЕСТО: ул.Вертолётчиков, д.5к1, кв.161, 10 этаж, домофон 161<br>
+            > КОНТАКТЫ: +79161483658<br>
+            > НАСТРОЕНИЕ: ИДЕАЛЬНОЕ!<span class="blink">_</span>
+        </p>
+        
+        
+        
+        <footer>
+            * Это сообщение самоуничтожится после прочтения *
+        </footer>
+    </div>
+    
+    <!-- Элемент для киберпанк взрыва -->
+    <div class="cyber-explosion" id="cyberExplosion">
+        <div class="explosion-text">ДОСТУП РАЗРЕШЁН. ЖДУ НА ДНЮХЕ.</div>
+        <img src="https://www.icegif.com/wp-content/uploads/2022/10/icegif-309.gif" class="cyber-gif" alt="Киберпанк взрыв">
+    </div>
+    
+    <script>
+        // Проверяем, было ли уже нажатие кнопки
+        if(localStorage.getItem('buttonPressed')) {
+            document.getElementById('confirmButton').textContent = "ДОСТУП УЖЕ РАЗРЕШЕН";
+            document.getElementById('confirmButton').style.backgroundColor = "#f0f";
+            document.getElementById('confirmButton').style.boxShadow = "0 0 10px #f0f, 0 0 20px #f0f";
+            document.getElementById('confirmButton').disabled = false;
+        }
+        
+        document.getElementById('confirmButton').addEventListener('click', function() {
+            // Сохраняем в localStorage, что кнопка была нажата
+            localStorage.setItem('buttonPressed', 'true');
+            
+            this.textContent = "ДОСТУП РАЗРЕШЕН";
+            this.style.backgroundColor = "#f0f";
+            this.style.boxShadow = "0 0 10px #f0f, 0 0 20px #f0f";
+            this.disabled = true;
+            
+            // Создаем эффект взлома
+            const container = document.querySelector('.container');
+            const glitchText = document.createElement('div');
+            glitchText.className = 'terminal';
+            glitchText.innerHTML = '> ACCESS GRANTED<br>> WELCOME TO THE NETWORK<br>> SEE YOU SOON<span class="blink">_</span>';
+            container.insertBefore(glitchText, this);
+            
+            // Анимация
+            setTimeout(() => {
+                container.style.boxShadow = "0 0 30px #f0f, 0 0 60px #f0f";
+            }, 500);
+            
+            // Показываем киберпанк взрыв
+            const explosion = document.getElementById('cyberExplosion');
+            explosion.style.display = 'block';
+            
+            // Добавляем звук взрыва (опционально)
+            const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-explosion-impact-1684.mp3');
+            audio.volume = 0.3;
+            audio.play().catch(e => console.log("Автовоспроизведение звука заблокировано"));
+            
+            // Убираем взрыв через 4 секунды
+            setTimeout(() => {
+                explosion.style.display = 'none';
+            }, 4000);
+        });
+        
+        // Добавляем случайные эффекты глитча
+        setInterval(() => {
+            if (Math.random() > 0.9) {
+                document.querySelector('h1').classList.add('glitch');
+                setTimeout(() => {
+                    document.querySelector('h1').classList.remove('glitch');
+                }, 200);
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
