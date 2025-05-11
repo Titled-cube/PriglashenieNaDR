@@ -308,7 +308,13 @@
 
         // Функция обновления приглашения
         function updateInvitation(guestId) {
-            const guest = guests[guestId];
+            // Преобразуем номер в строку, так как ключи объекта - строки
+            const guest = guests[guestId.toString()];
+            
+            if (!guest) {
+                console.error('Гость с ID', guestId, 'не найден');
+                return;
+            }
             
             // Обновляем имя и род
             guestNameElement.textContent = guest.name;
