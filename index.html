@@ -1,1 +1,178 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Menu - GitHub Pages</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #161b22;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+        h1 {
+            color: #58a6ff;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 10px;
+        }
+        .page-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .page-card {
+            background-color: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 15px;
+            transition: all 0.2s;
+        }
+        .page-card:hover {
+            border-color: #58a6ff;
+            transform: translateY(-3px);
+        }
+        .page-card a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .page-card p {
+            color: #8b949e;
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+        .search-box {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #c9d1d9;
+            font-family: inherit;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: #58a6ff;
+            box-shadow: 0 0 0 3px rgba(56, 139, 253, 0.15);
+        }
+        .last-updated {
+            font-size: 0.8em;
+            color: #8b949e;
+            margin-top: 20px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GitHub Pages Debug Menu</h1>
+        
+        <input type="text" class="search-box" placeholder="Поиск страниц..." id="searchInput">
+        
+        <div class="page-list" id="pageList">
+            <!-- Страницы будут добавлены через JavaScript -->
+        </div>
+        
+        <div class="last-updated">
+            Последнее обновление: <span id="lastUpdated"></span>
+        </div>
+    </div>
+
+    <script>
+        // Список доступных страниц
+        const pages = [
+            {
+                name: "лера",
+                path: "Лере.html",
+                description: "Основное приглашение на день рождения"
+            },
+            {
+                name: "илья",
+                path: "Илье.html",
+                description: "Страница ввода кода доступа"
+            },
+            {
+                name: "эдик",
+                path: "Эдику.html",
+                description: "Пример тестовой страницы"
+            },
+            {
+                name: "гера",
+                path: "Гере.html",
+                description: "Еще одна тестовая страница"
+            }
+        ];
+
+        // Функция для отображения списка страниц
+        function renderPages(filter = '') {
+            const pageList = document.getElementById('pageList');
+            pageList.innerHTML = '';
+            
+            const filteredPages = pages.filter(page => 
+                page.name.toLowerCase().includes(filter.toLowerCase()) || 
+                page.description.toLowerCase().includes(filter.toLowerCase())
+            );
+            
+            if (filteredPages.length === 0) {
+                pageList.innerHTML = '<p>Страницы не найдены</p>';
+                return;
+            }
+            
+            filteredPages.forEach(page => {
+                const pageCard = document.createElement('div');
+                pageCard.className = 'page-card';
+                pageCard.innerHTML = `
+                    <a href="${page.path}">${page.name}</a>
+                    <p>${page.description}</p>
+                    <p>Файл: <code>${page.path}</code></p>
+                `;
+                pageList.appendChild(pageCard);
+            });
+        }
+
+        // Поиск страниц
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            renderPages(e.target.value);
+        });
+
+        // Установка даты последнего обновления
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleString();
+
+        // Первоначальная загрузка страниц
+        renderPages();
+
+        // Проверка существования страниц (опционально)
+        async function checkPages() {
+            for (const page of pages) {
+                try {
+                    const response = await fetch(page.path);
+                    if (!response.ok) {
+                        console.warn(`Страница не найдена: ${page.path}`);
+                    }
+                } catch (error) {
+                    console.error(`Ошибка при проверке страницы ${page.path}:`, error);
+                }
+            }
+        }
+
+        // Запуск проверки страниц (можно отключить, если не нужно)
+        checkPages();
+    </script>
+</body>
+</html>
