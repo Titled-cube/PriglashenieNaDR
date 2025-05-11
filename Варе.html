@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Приглашение</title>
+    <title>Приглашение для Вари</title>
     <style>
         body {
             background-color: #0a0a12;
@@ -138,7 +138,6 @@
             color: #0ff;
         }
         
-        /* Стили для киберпанк взрыва */
         .cyber-explosion {
             position: fixed;
             top: 0;
@@ -175,9 +174,42 @@
             animation: textGlow 1s infinite alternate;
         }
         
-        @keyframes textGlow {
-            from { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff; }
-            to { text-shadow: 0 0 15px #0ff, 0 0 30px #0ff, 0 0 40px #f0f; }
+        .ps5-button {
+            display: block;
+            width: 250px;
+            margin: 20px auto;
+            padding: 12px;
+            background-color: #003087;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: not-allowed;
+            opacity: 0.5;
+            position: relative;
+        }
+        
+        .ps5-button.active {
+            cursor: pointer;
+            opacity: 1;
+            background: linear-gradient(90deg, #003087, #0072ce);
+            box-shadow: 0 0 15px #0072ce;
+            animation: pulse 2s infinite;
+        }
+        
+        .ps5-button.active:hover {
+            transform: scale(1.05);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px #0072ce; }
+            50% { box-shadow: 0 0 20px #0072ce; }
+            100% { box-shadow: 0 0 10px #0072ce; }
+        }
+        
+        .ps-icon {
+            margin-right: 10px;
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -188,7 +220,7 @@
         
         <p>Дорогая <span class="highlight">Варя</span>,</p>
         
-        <p>Ты получилa это сообщение из <span class="neon">киберпространства</span>. Система обнаружила важное событие:</p>
+        <p>Ты получила это сообщение из <span class="neon">киберпространства</span>. Система обнаружила важное событие:</p>
         
         <div class="terminal">
             > SYSTEM ALERT: LEVEL_12_INITIATION_SEQUENCE<br>
@@ -205,9 +237,13 @@
         
         <p>Будут: <span class="neon">эпичные игры</span>, <span class="pink">вкусная пицца</span> и <span class="highlight">настолки</span>.</p>
         
-        <p>Если ты готовa присоединиться к этой <span class="neon">цифровой вечеринке</span>, подтверди свое участие:</p>
+        <p>Если ты готова присоединиться к этой <span class="neon">цифровой вечеринке</span>, подтверди свое участие:</p>
         
         <button class="button" id="confirmButton">ПОДТВЕРДИТЬ ПОСЕЩЕНИЕ</button>
+        
+        <button class="ps5-button" id="ps5Button">
+            <span class="ps-icon">🎮</span> КОД PLAYSTATION [LOCKED]
+        </button>
         
         <p class="terminal">
             > ДАТА: 18.05<br>
@@ -217,15 +253,11 @@
             > НАСТРОЕНИЕ: ИДЕАЛЬНОЕ!<span class="blink">_</span>
         </p>
         
-        
-        
         <footer>
             * Это сообщение самоуничтожится после прочтения *
-            
         </footer>
     </div>
     
-    <!-- Элемент для киберпанк взрыва -->
     <div class="cyber-explosion" id="cyberExplosion">
         <div class="explosion-text">ДОСТУП РАЗРЕШЁН. ЖДУ НА ДНЮХЕ.</div>
         <img src="https://www.icegif.com/wp-content/uploads/2022/10/icegif-309.gif" class="cyber-gif" alt="Киберпанк взрыв">
@@ -275,6 +307,25 @@
                 explosion.style.display = 'none';
             }, 4000);
         });
+        
+        // Проверяем дату для кнопки PS5
+        function checkPS5Button() {
+            const today = new Date();
+            const birthday = new Date(today.getFullYear(), 4, 18); // 18 мая (месяцы 0-11)
+            
+            if (today >= birthday) {
+                const ps5Button = document.getElementById('ps5Button');
+                ps5Button.classList.add('active');
+                ps5Button.textContent = "🎮 КОД PLAYSTATION [UNLOCKED]";
+                ps5Button.onclick = function() {
+                    window.location.href = "ps5-code.html";
+                };
+            }
+        }
+        
+        // Проверяем сразу и каждые 24 часа
+        checkPS5Button();
+        setInterval(checkPS5Button, 86400000); // 24 часа
         
         // Добавляем случайные эффекты глитча
         setInterval(() => {
