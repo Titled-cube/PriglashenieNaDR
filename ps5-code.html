@@ -109,7 +109,7 @@
         <h1>Введите код PlayStation 5</h1>
         
         <div class="input-container">
-            <input type="text" id="codeInput" placeholder="Введите код" maxlength="11">
+            <input type="text" id="codeInput" placeholder="Введите код" maxlength="12">
             <button id="submitBtn">Проверить</button>
         </div>
         
@@ -121,7 +121,7 @@
             <h2>Код принят! Доступ разрешен!</h2>
             <img src="https://forum.warspear-online.com/uploads/monthly_2020_05/image.gif.9a93f0ad65f381265353f8b7602b15bf.gif" 
                  alt="Нолик" class="nolic-gif">
-            <p>Приходи на День Рождения за PlayStation 5!</p>
+            <p>Молодец можешь ввести код в главной странице!</p>
         </div>
         
         <div class="hint">
@@ -155,6 +155,7 @@
                 
                 // Можно добавить звук успеха
                 // new Audio('success.mp3').play();
+                 localStorage.setItem("codes", "PS5")
             } else {
                 // Неправильный код
                 errorMsg.style.display = 'block';
