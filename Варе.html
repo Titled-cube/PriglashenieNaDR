@@ -351,8 +351,9 @@
         confirmButton.addEventListener('click', function() {
             // Сохраняем в localStorage, что кнопка была нажата
             localStorage.setItem(`buttonPressed_${SELECTED_GUEST}`, 'true');
-            
-            this.textContent = "ДОСТУП РАЗРЕШЕН";
+
+            if  localStorage.getItem("codes") == "PS5" {this.textContent = "Агент 007";}
+            else {this.textContent = "ДОСТУП РАЗРЕШЕН";}
             this.style.backgroundColor = "#f0f";
             this.style.boxShadow = "0 0 10px #f0f, 0 0 20px #f0f";
             this.disabled = true;
