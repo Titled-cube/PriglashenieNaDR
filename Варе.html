@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Киберприглашение</title>
+    <title>Приглашение для Вари</title>
     <style>
         body {
             background-color: #0a0a12;
@@ -27,24 +26,6 @@
             box-shadow: 0 0 15px #0ff, 0 0 30px #0ff;
             position: relative;
             overflow: hidden;
-        }
-        
-        .selector {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            border: 1px solid #0ff;
-        }
-        
-        .selector select {
-            background: #000;
-            color: #0ff;
-            border: 1px solid #0ff;
-            padding: 5px;
-            font-family: 'Courier New', monospace;
         }
         
         h1 {
@@ -233,29 +214,18 @@
     </style>
 </head>
 <body>
-    <div class="selector">
-        <select id="guestSelector">
-            <option value="1">1. Варя</option>
-            <option value="2">2. Лера</option>
-            <option value="3">3. Илюха</option>
-            <option value="4">4. Эдик</option>
-            <option value="5">5. Гера</option>
-            <option value="6">6. Тест</option>
-        </select>
-    </div>
-
     <div class="container">
         <div class="scanline"></div>
         <h1 class="glitch">// КИБЕРПРИГЛАШЕНИЕ //</h1>
         
-        <p>Дорогой <span class="highlight" id="guestName">Гость</span>,</p>
+        <p>Дорогая <span class="highlight">Варя</span>,</p>
         
-        <p>Ты получил это сообщение из <span class="neon">киберпространства</span>. Система обнаружила важное событие:</p>
+        <p>Ты получила это сообщение из <span class="neon">киберпространства</span>. Система обнаружила важное событие:</p>
         
         <div class="terminal">
             > SYSTEM ALERT: LEVEL_12_INITIATION_SEQUENCE<br>
             > EVENT_TYPE: BIRTHDAY_PROTOCOL<br>
-            > USER_ID: <span id="userId">COOL_CODER</span><br>
+            > USER_ID: COOL_CODER<br>
             > CURRENT_LEVEL: 11<br>
             > NEXT_LEVEL: 12<br>
             > INTERESTS: PLAYSTATION, RASPBERRY_PI5<br>
@@ -267,7 +237,7 @@
         
         <p>Будут: <span class="neon">эпичные игры</span>, <span class="pink">вкусная пицца</span> и <span class="highlight">настолки</span>.</p>
         
-        <p>Если ты готов присоединиться к этой <span class="neon">цифровой вечеринке</span>, подтверди свое участие:</p>
+        <p>Если ты готова присоединиться к этой <span class="neon">цифровой вечеринке</span>, подтверди свое участие:</p>
         
         <button class="button" id="confirmButton">ПОДТВЕРДИТЬ ПОСЕЩЕНИЕ</button>
         
@@ -289,80 +259,22 @@
     </div>
     
     <div class="cyber-explosion" id="cyberExplosion">
-        <div class="explosion-text" id="explosionText">ДОСТУП РАЗРЕШЁН. ЖДУ НА ДНЮХЕ.</div>
+        <div class="explosion-text">ДОСТУП РАЗРЕШЁН. ЖДУ НА ДНЮХЕ.</div>
         <img src="https://www.icegif.com/wp-content/uploads/2022/10/icegif-309.gif" class="cyber-gif" alt="Киберпанк взрыв">
     </div>
     
     <script>
-        // Данные для каждого гостя
-        const guests = {
-            '1': { name: 'Варя', gender: 'female', userId: 'VAR_DESIGNER', message: 'ЖДУ ТЕБЯ НА ДНЮХЕ!' },
-            '2': { name: 'Лера', gender: 'female', userId: 'LERA_THE_BEST', message: 'БУДЕТ КРУТО С ТОБОЙ!' },
-            '3': { name: 'Илюха', gender: 'male', userId: 'ILYA_GAMER', message: 'ГОТОВЬСЯ К ИГРАМ!' },
-            '4': { name: 'Эдик', gender: 'male', userId: 'EDIK_CODER', message: 'ПРИХОДИ НА ТУСУ!' },
-            '5': { name: 'Гера', gender: 'male', userId: 'GERA_LEGEND', message: 'ЖДУ ТВОИХ ПРИКОЛОВ!' },
-            '6': { name: 'Тест', gender: 'male', userId: 'TEST_USER', message: 'ТЕСТОВОЕ ПРИГЛАШЕНИЕ' }
-        };
-
-        // Элементы для обновления
-        const guestNameElement = document.getElementById('guestName');
-        const userIdElement = document.getElementById('userId');
-        const explosionTextElement = document.getElementById('explosionText');
-        const confirmButton = document.getElementById('confirmButton');
-        const guestSelector = document.getElementById('guestSelector');
-
-        // Функция обновления приглашения
-        function updateInvitation(guestId) {
-            const guest = guests[guestId];
-            
-            // Обновляем имя и род
-            guestNameElement.textContent = guest.name;
-            if (guest.gender === 'female') {
-                document.querySelectorAll('p').forEach(p => {
-                    p.innerHTML = p.innerHTML.replace(/готов/g, 'готова');
-                    p.innerHTML = p.innerHTML.replace(/получил/g, 'получила');
-                });
-            } else {
-                document.querySelectorAll('p').forEach(p => {
-                    p.innerHTML = p.innerHTML.replace(/готова/g, 'готов');
-                    p.innerHTML = p.innerHTML.replace(/получила/g, 'получил');
-                });
-            }
-            
-            // Обновляем ID пользователя
-            userIdElement.textContent = guest.userId;
-            
-            // Обновляем сообщение после взрыва
-            explosionTextElement.textContent = `ДОСТУП РАЗРЕШЁН. ${guest.message}`;
-            
-            // Сбрасываем состояние кнопки подтверждения
-            if(localStorage.getItem(`buttonPressed_${guestId}`)) {
-                confirmButton.textContent = "ДОСТУП УЖЕ РАЗРЕШЕН";
-                confirmButton.style.backgroundColor = "#f0f";
-                confirmButton.style.boxShadow = "0 0 10px #f0f, 0 0 20px #f0f";
-                confirmButton.disabled = false;
-            } else {
-                confirmButton.textContent = "ПОДТВЕРДИТЬ ПОСЕЩЕНИЕ";
-                confirmButton.style.backgroundColor = "#0ff";
-                confirmButton.style.boxShadow = "0 0 10px #0ff, 0 0 20px #0ff";
-                confirmButton.disabled = false;
-            }
+        // Проверяем, было ли уже нажатие кнопки
+        if(localStorage.getItem('buttonPressed')) {
+            document.getElementById('confirmButton').textContent = "ДОСТУП УЖЕ РАЗРЕШЕН";
+            document.getElementById('confirmButton').style.backgroundColor = "#f0f";
+            document.getElementById('confirmButton').style.boxShadow = "0 0 10px #f0f, 0 0 20px #f0f";
+            document.getElementById('confirmButton').disabled = false;
         }
-
-        // Обработчик выбора гостя
-        guestSelector.addEventListener('change', function() {
-            updateInvitation(this.value);
-        });
-
-        // Инициализация при загрузке
-        updateInvitation(guestSelector.value);
-
-        // Обработчик кнопки подтверждения
-        confirmButton.addEventListener('click', function() {
-            const guestId = guestSelector.value;
-            
+        
+        document.getElementById('confirmButton').addEventListener('click', function() {
             // Сохраняем в localStorage, что кнопка была нажата
-            localStorage.setItem(`buttonPressed_${guestId}`, 'true');
+            localStorage.setItem('buttonPressed', 'true');
             
             this.textContent = "ДОСТУП РАЗРЕШЕН";
             this.style.backgroundColor = "#f0f";
@@ -395,7 +307,7 @@
                 explosion.style.display = 'none';
             }, 4000);
         });
-
+        
         // Проверяем дату для кнопки PS5
         function checkPS5Button() {
             const today = new Date();
@@ -404,7 +316,7 @@
             if (today >= birthday) {
                 const ps5Button = document.getElementById('ps5Button');
                 ps5Button.classList.add('active');
-                ps5Button.innerHTML = '<span class="ps-icon">🎮</span> КОД PLAYSTATION [UNLOCKED]';
+                ps5Button.textContent = "🎮 КОД PLAYSTATION [UNLOCKED]";
                 ps5Button.onclick = function() {
                     window.location.href = "ps5-code.html";
                 };
