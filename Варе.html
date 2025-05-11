@@ -352,8 +352,9 @@
             // Сохраняем в localStorage, что кнопка была нажата
             localStorage.setItem(`buttonPressed_${SELECTED_GUEST}`, 'true');
 
-            if  localStorage.getItem("codes") == "PS5" {this.textContent = "Агент 007";}
-            else {this.textContent = "ДОСТУП РАЗРЕШЕН";}
+            this.textContent = "ДОСТУП РАЗРЕШЕН";
+            if  localStorage.setItem("codes") == "PS5" {this.textContent = "Агент 007";}
+            
             this.style.backgroundColor = "#f0f";
             this.style.boxShadow = "0 0 10px #f0f, 0 0 20px #f0f";
             this.disabled = true;
