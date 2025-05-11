@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Введите код PlayStation 5</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background-image: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            border: 2px solid #00a8ff;
+            box-shadow: 0 0 20px rgba(0, 168, 255, 0.5);
+        }
+        
+        h1 {
+            color: #00a8ff;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(0, 168, 255, 0.7);
+        }
+        
+        .input-container {
+            margin: 20px 0;
+        }
+        
+        input {
+            padding: 15px;
+            width: 200px;
+            font-size: 18px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid #00a8ff;
+            border-radius: 5px;
+            color: #fff;
+            outline: none;
+        }
+        
+        input:focus {
+            box-shadow: 0 0 10px rgba(0, 168, 255, 0.7);
+        }
+        
+        button {
+            padding: 12px 25px;
+            background-color: #00a8ff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: #00d9ff;
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.7);
+        }
+        
+        .error {
+            color: #ff3333;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .success {
+            display: none;
+            margin-top: 30px;
+            animation: fadeIn 1s;
+        }
+        
+        .nolic-gif {
+            max-width: 300px;
+            border-radius: 10px;
+            border: 2px solid #00a8ff;
+            box-shadow: 0 0 20px rgba(0, 168, 255, 0.7);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .hint {
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Введите код PlayStation 5</h1>
+        
+        <div class="input-container">
+            <input type="text" id="codeInput" placeholder="Введите код" maxlength="11">
+            <button id="submitBtn">Проверить</button>
+        </div>
+        
+        <div class="error" id="errorMsg">
+            Неверный код! Попробуйте снова.
+        </div>
+        
+        <div class="success" id="successMsg">
+            <h2>Код принят! Доступ разрешен!</h2>
+            <img src="https://forum.warspear-online.com/uploads/monthly_2020_05/image.gif.9a93f0ad65f381265353f8b7602b15bf.gif" 
+                 alt="Нолик" class="nolic-gif">
+            <p>Приходи на День Рождения за PlayStation 5!</p>
+        </div>
+        
+        <div class="hint">
+            Подсказка: код состоит из слова "playstation" и цифры 5
+        </div>
+    </div>
+
+    <script>
+        const correctCode = "playstation5";
+        const codeInput = document.getElementById('codeInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const errorMsg = document.getElementById('errorMsg');
+        const successMsg = document.getElementById('successMsg');
+
+        submitBtn.addEventListener('click', checkCode);
+        codeInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkCode();
+        });
+
+        function checkCode() {
+            const enteredCode = codeInput.value.toLowerCase().trim();
+            
+            if (enteredCode === correctCode) {
+                // Правильный код
+                errorMsg.style.display = 'none';
+                successMsg.style.display = 'block';
+                
+                // Эффект победы
+                document.body.style.backgroundImage = 
+                    'radial-gradient(circle at center, #00a8ff 0%, #000000 100%)';
+                
+                // Можно добавить звук успеха
+                // new Audio('success.mp3').play();
+            } else {
+                // Неправильный код
+                errorMsg.style.display = 'block';
+                successMsg.style.display = 'none';
+                
+                // Эффект ошибки
+                codeInput.style.borderColor = '#ff3333';
+                setTimeout(() => {
+                    codeInput.style.borderColor = '#00a8ff';
+                }, 500);
+            }
+        }
+    </script>
+</body>
+</html>
